@@ -1,17 +1,43 @@
 # textcompressorJAVA
-About finmath lib
+About Text Compressor for Java
 ==========
 
 
 ****************************************
 
-**Mathematical Finance Library: Algorithms and methodologies related to mathematical finance.**
+**Text Compressor using Huffmann codes.**
 
 ****************************************
 
-The finmath lib libraries provides implementations of methodologies related to mathematical finance, but applicable to other fields. Examples are
+## Description of the Problem
+One of the great paradigms of computing is the efficient use of
+the memory that allows the information to be stored and transmitted. It is for this
+reason that in the decade, computer scientists sought to invent a binary code
+make it as efficient as possible. David Hufmann in 1951 publishes a
+article on a method of building codes with the minimum quantity
+of redundancies. His method was truly revolutionary since Hufmann
+demonstrated that his method produces the most efficient code.
+In this small project we will implement the Hufmann code to compress
+and unzip a text file.
 
-- General numerical algorithms like
+
+## Methodology
+The Methodology used in this project consisted of decomposing the
+I work on small sub-tasks (reading the characters of the text,
+creation of the list, the construction of the binary tree, the serialization of the
+objects,...). The performance of these sub-tasks was completely sequential,
+in the way in which the problem statement and instructions are stated.
+
+
+```math
+SE = \frac{\sigma}{\sqrt{n}}
+```
+
+- <img src="https://latex.codecogs.com/gif.latex?P(s | O_t )=\text { Probability of a sensor reading value when sleep onset is observed at a time bin } t " />
+![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
+
+
+- 	General numerical algorithms like
     - Generation of random numbers
     - Optimization (a Levenberg–Marquardt algorithm is provided)
 - Monte-Carlo simulation of multi-dimensional, multi-factor stochastic differential equations (SDEs)
