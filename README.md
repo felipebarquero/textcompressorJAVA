@@ -76,6 +76,13 @@ that this tree does not have the frequencies or the codes, only the characters).
 Then with this tree and the message, the message is decompressed and created
 a text file with your information.
 
+![This is me][1]
+
 # Jupyter Notebook
 For the  description of the algorithm read  [description](description.ipynb)
+or [pdf](TareaIII.pdf)
+
+
+
+[1]: tree.jpg
 
