@@ -77,5 +77,5 @@ Then with this tree and the message, the message is decompressed and created
 a text file with your information.
 
 # Jupyter Notebook
-For the  description of the algorithm read description.ipynb 
-$e^{i\pi} + 1 = 0$
+For the  description of the algorithm read  [description](description.ipynb)
+
