@@ -28,141 +28,54 @@ creation of the list, the construction of the binary tree, the serialization of 
 objects,...). The performance of these sub-tasks was completely sequential,
 in the way in which the problem statement and instructions are stated.
 
+## Implementation
 
-```math
-SE = \frac{\sigma}{\sqrt{n}}
-```
-
-- <img src="https://latex.codecogs.com/gif.latex?P(s | O_t )=\text { Probability of a sensor reading value when sleep onset is observed at a time bin } t " />
-![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
-
-
-- 	General numerical algorithms like
-    - Generation of random numbers
-    - Optimization (a Levenberg–Marquardt algorithm is provided)
-- Monte-Carlo simulation of multi-dimensional, multi-factor stochastic differential equations (SDEs)
-    - LIBOR Market Model
-    - Black Scholes type multi-asset model (multi-factor, multi-dimensional geometric Brownian motion)
-    - Equity Hybrid LIBOR Market Model
-    - Hull-White Short Rate Model (with time dependent parameters)
-    - Merton Model (as Monte-Carlo Simulation)
-    - Heston Model (as Monte-Carlo Simulation)
-- Estimation of conditional expectations in a Monte-Carlo framework
-- Calibration of market data objects like curves (discount and forward curve) or volatility surfaces
-    - Various interpolation methods (linear, cubic spline, harmonic spline, Akima).
-    - Various interpolation entities (value, log-value, rate, etc.).
-    - Parametric curves like Nelson-Siegel and Nelson-Siegel-Svensson.
-- Simulation of interest rate term structure models (LIBOR market model with local and stochastic volatility)
-- Calibration of the LIBOR market model
-- Valuation of complex derivatives (e.g. Bermudan/multi-callables)
-- Hedge Simulation
-
-The libraries have a focus on Monte-Carlo methods, interest rate products and models and hybrid models.
-
-**finmath lib is now on Java 8 (since February 2nd, 2014), but a Java 6 version is provided too.**
-
-*Note: for convenience the provided Eclipse project is configured for Java 6. The maven pom defaults to Java 6. To build the Java 8 version use the profile "java-8", i.e. the maven command line option "-P java-8"*
-
-Distribution
---------------------------------------
-
-finmath lib is distributed through the central maven repository. It's coordinates are:
-
-For the Java 6 version:
-
-	<groupId>net.finmath</groupId>
-	<artifactId>finmath-lib</artifactId>
-	<version>${project.version}</version>
-	<classifier>java6</classifier>
-
-For the Java 8 version:
-
-	<groupId>net.finmath</groupId>
-	<artifactId>finmath-lib</artifactId>
-	<version>${project.version}</version>
+### Reading the characters
 	
-You may build the Java 8 version via Maven using
+For this task the `java.io` class was used
+the *FileReader, Bu erReader, File*. Since *char* can take 256 values,
+A vector of 256 entries was created where the occurrences of
+each character. Then with these appearances and the total amount of characters
+the frequencies were calculated.
+### Creation of the ordered list 
+For the creation of the ordered list
+or the class `OrderedList.java` was used, first trees were created with the
+character and its respective frequency (in an object of class SymbolHu man
+comparable) as the root *z* and both *null* children. Then the trees were inserted
+in the list ordered by the frequency of the root.
 
-	mvn -P java-8
+### Tree construction 
+This is where Huffman's algorithm begins. First
+if the list has at least two elements `! isEmpty ()` then it takes
+the two minor trees and a new tree is created with children the two trees
+selected and with frequency equal to the sum of the frequencies. When
+there is only one element left in the list the method returns this element.
 
-and the Java 6 version using
+### Encoding 
+To rewrite the message in the Hu man codes,
+performed the following process: First the entire tree assigned codes was traversed
+to the sheets, in addition a copy had been saved (memory reference)
+from the list, so for each character its code was searched for in the list and this
+was concatenated into a String called message.
 
-	mvn -P java-6
-	
-Source code
--------------------------------------
+### Serialization #
+For the serialization of the message, the message was first converted
+(binary string) to a `BitSet`. Since the BitSet class implements *Serializable*,
+then the message is simply serialized in bits (*encodedMessage*).
+To serialize the tree we used its own method called (*serialize ()*),
+it traverses the tree and concatenates the following information (The element: *'?'*
+if it is *null*, and if not its character. Where the **#D#**  means it comes from the  right,
+**#I#** on the left, #F# is a leaf.). Finally String implements
+Serializable, so it just gets serialized.
 
-The finmath lib Java library comes in two flavors which have a slightly different code base: a Java 8 version and a Java 6 version.
-We will use Java 8 concepts in the future and try to provide Java 6 compatibility where possible.
+### Deserialization 
+The deserialization of the message in bits (*encodedMessage*)
+it was easy as BitSet is serializable. For the tree, it was first deserialized or the
+string of the tree (*treeString*) and from this the binary tree was created (note
+that this tree does not have the frequencies or the codes, only the characters).
+Then with this tree and the message, the message is decompressed and created
+a text file with your information.
 
-For that reason, the source code is duplicated:
--    src/main/java				contains the Java 8 compatible source files
--    src/main/java6				contains the Java 6 compatible source files
-
-Although the two folder share some/many identical source files, we prefer this two folder layout
-over one with a third folder like java-common.
-
-
-### Building finmath lib
-
--    To build finmath lib for Java 8 use src/main/java
--    To build finmath lib for java 6 use src/main/java-6
-
-These builds may be performed via Maven the profiles "java-8" and "java-6".
-The eclipse project file is pre-configured to Java 6.
-
-#### Maven build
-
-The maven pom defaults to the Java 8 build. To build finmath lib for Java 6 use the maven profile "java-6".
-
-
-
-Repositories
--------------------------------------
-
-Source code and demos are provided via Github repository.
-			<ul>
-				<li>
-					<i>Git</i> repositories with Java code:
-					<ul>
-						<li>
-							finmath lib: [https://github.com/finmath/finmath-lib](https://github.com/finmath/finmath-lib)
-						</li>
-						<li>
-							finmath experiments: [https://github.com/finmath/finmath-experiments](https://github.com/finmath/finmath-experiments)
-						</li>
-						<li>
-							finmath spreadsheets: [https://github.com/finmath/finmath-spreadsheets](https://github.com/finmath/finmath-spreadsheets)
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-Although not recommeded, the repository contains an Eclipse procject and classpath file including all dependencies. We provide this for convenience. We provide <a href="/java/subversion">instructions</a> on how to checkout the code using the Eclipse IDE.
-Of course, you may use the IDE of your choice by simply importing the maven pom.
-
-
-Documentation
--------------
-
--   [finmath lib Project documentation][]  
-    provides the documentation of the library api.
--   [finmath lib API documentation][]  
-    provides the documentation of the library api.
--   [finmath.net special topics][]  
-    cover some selected topics with demo spreadsheets and uml diagrams.
-    Some topics come with additional documentations (technical papers).
-
-
-License
--------
-
-The code of "finmath lib" and "finmath experiments" (packages
-`net.finmath.*`) are distributed under the [Apache License version
-2.0][], unless otherwise explicitly stated.
- 
-
-  [finmath lib Project documentation]: http://finmath.net/finmath-lib/ 
-  [finmath lib API documentation]: http://finmath.net/finmath-lib/apidocs/
-  [finmath.net special topics]: http://www.finmath.net/topics
-  [Apache License version 2.0]: http://www.apache.org/licenses/LICENSE-2.0.html
+# Jupyter Notebook
+For the  description of the algorithm read description.ipynb 
+$e^{i\pi} + 1 = 0$
